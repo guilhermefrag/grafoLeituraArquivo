@@ -8,6 +8,7 @@ fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
 
     let nosNegativos= [];
     let nosComDuplicidade = [];
+    let nosGrafos = [];
     
     //como é iterado em linhas de arquivo n da de fazer forEach nem .map()
     for (const linha of data.split("\n")) {
@@ -20,23 +21,27 @@ fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
       }
 
       const numeroDaLinha = linhaDividida[0].trim();
-      const nomeDaLinha = linhaDividida[1].trim();
+      const valorDaLinha = linhaDividida[1].trim();
       
       if (numeroDaLinha === "Linha1") {
-        console.log(nomeDaLinha)
-      }else if (parseInt(nomeDaLinha) < 0) {
+        console.log(valorDaLinha)
+      }else if (parseInt(valorDaLinha) < 0) {
         //Insere no array de numeros negativos
-        nosNegativos.push([numeroDaLinha, parseInt(nomeDaLinha)]);
-      }else if (nosComDuplicidade.includes(parseInt(nomeDaLinha))) {
+        nosNegativos.push([numeroDaLinha, parseInt(valorDaLinha)]);
+      }else if (nosGrafos.find((item) => item[1] === parseInt(valorDaLinha))) {
         //Se já existe dentro do grafo, ele não duplica, apenas continua
-        continue;
-      }else if (parseInt(nomeDaLinha)){
-        //Aqui fica a lógica principal do grafo
-        nosComDuplicidade.push([numeroDaLinha, parseInt(nomeDaLinha)]);
+        nosComDuplicidade.push([numeroDaLinha, parseInt(valorDaLinha)]);
+
+      }else if (parseInt(valorDaLinha)){
+        //Aqui preenche o array de números que serão usados no grafo
+        nosGrafos.push([numeroDaLinha, parseInt(valorDaLinha)]);
       }
     }
     nosNegativos.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
+    console.log("--------------------------------------------------")
     nosComDuplicidade.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
+    console.log("--------------------------------------------------")
+    nosGrafos.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
   }
 });
 
