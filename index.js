@@ -160,3 +160,31 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
 // g.addAresta(a, t);
 
 // console.log(g.toString());
+
+
+
+
+
+
+function criarListaAdjacencia(lista) {
+  let grafo = new Grafo();
+
+  let numerosPositivos = lista.filter(numero => parseInt(numero) > 0 && !isNaN(numero));
+  let numerosUnicos = [...new Set(numerosPositivos)];
+
+  numerosUnicos.forEach((numero, index) => {
+    let verticeAtual = grafo.addVertice(numero);
+
+    if (index > 0 && numerosUnicos[index-1]) {
+      let verticeAnterior = grafo.getVerticePorNome(numerosUnicos[index-1]);
+      grafo.addAresta(verticeAtual, verticeAnterior);
+    }
+
+    if (index < numerosUnicos.length - 1 && numerosUnicos[index+1]) {
+      let verticeSeguinte = grafo.getVerticePorNome(numerosUnicos[index+1]);
+      grafo.addAresta(verticeAtual, verticeSeguinte);
+    }
+  });
+
+  return grafo;
+}
