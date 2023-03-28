@@ -20,7 +20,7 @@ class Grafo {
     return a;
   }
 
-  getVerticeByNome(nomeVertice) {
+  getVerticePorNome(nomeVertice) {
     return this.vertices.find(v => v.nome == nomeVertice);
   }
 
@@ -63,7 +63,6 @@ class Aresta {
     this.destino = destino;
   }
 }
-
 
 fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
   if (err) {
@@ -109,17 +108,33 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
       const valorVertice = item[1];
 
       if (String(valorVertice).slice(-1) == 1) {
+        const vAnterior = grafo.getVerticePorNome(valorVertice - 99),
+          vProximo = grafo.getVerticePorNome(valorVertice + 101),
+          vAtual = grafo.getVerticePorNome(valorVertice);
 
-        const vAnterior = grafo.getVerticeByNome(parseInt(valorVertice) - 99);
-        const vProximo = grafo.getVerticeByNome(parseInt(valorVertice) + 101);
-        const vAtual = grafo.getVerticeByNome(parseInt(item[1]));
+        vAnterior && grafo.addAresta(vAnterior, vAtual);
+        vProximo && grafo.addAresta(vProximo, vAtual);
+      }
 
-        if (vAnterior) grafo.addAresta(vAnterior, vAtual);
-        if (vProximo) grafo.addAresta(vAtual, vProximo);
+      if (String(valorVertice).slice(-1) == 2) {
+        const vAntFinalTres = grafo.getVerticePorNome(valorVertice - 99),
+          vAntFinalDois = grafo.getVerticePorNome(valorVertice - 100),
+          vAntFinalUm = grafo.getVerticePorNome(valorVertice - 101),
+          vProximoFinalTres = grafo.getVerticePorNome(valorVertice + 101),
+          vProximoFinalDois = grafo.getVerticePorNome(valorVertice + 100),
+          vProximoFinalUm = grafo.getVerticePorNome(valorVertice + 99),
+          vAtual = grafo.getVerticePorNome(valorVertice);
+
+        vAntFinalTres && grafo.addAresta(vAntFinalTres, vAtual);
+        vAntFinalDois && grafo.addAresta(vAntFinalDois, vAtual);
+        vAntFinalUm && grafo.addAresta(vAntFinalUm, vAtual);
+        vProximoFinalTres && grafo.addAresta(vProximoFinalTres, vAtual);
+        vProximoFinalDois && grafo.addAresta(vProximoFinalDois, vAtual);
+        vProximoFinalUm && grafo.addAresta(vProximoFinalUm, vAtual);
       }
     });
 
-    // console.log(grafo.toString());
+    console.log(grafo.toString());
 
     // nosNegativos.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
     // console.log("--------------------------------------------------")
