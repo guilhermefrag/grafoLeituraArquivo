@@ -105,86 +105,113 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
     nosGrafos.forEach(item => grafo.addVertice(item[1]));
 
     nosGrafos.forEach(item => {
-      const valorVertice = item[1];
+      const valorVertice = item[1],
+        vAtual = grafo.getVerticePorNome(valorVertice);
 
-      if (String(valorVertice).slice(-1) == 1) {
+      // if (valorVertice == 101) {
+      //   const vAnterior = grafo.getVerticePorNome(valorVertice - 99),
+      //     vProximo = grafo.getVerticePorNome(valorVertice + 1);
+
+      //   vAnterior && grafo.addAresta(vAtual, vAnterior);
+      //   vProximo && grafo.addAresta(vAtual, vProximo);
+      // }
+
+      if (String(valorVertice).slice(-1) == 1 /* && valorVertice !== 101 */) {
         const vAnterior = grafo.getVerticePorNome(valorVertice - 99),
-          vProximo = grafo.getVerticePorNome(valorVertice + 101),
-          vAtual = grafo.getVerticePorNome(valorVertice);
+          vProximo = grafo.getVerticePorNome(valorVertice + 1);
 
-        vAnterior && grafo.addAresta(vAnterior, vAtual);
-        vProximo && grafo.addAresta(vProximo, vAtual);
+        vAnterior && grafo.addAresta(vAtual, vAnterior);
+        vProximo && grafo.addAresta(vAtual, vProximo);
+        // const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
+        //   v1Mais = grafo.getVerticePorNome(valorVertice + 1),
+        //   v99Menos = grafo.getVerticePorNome(valorVertice - 99),
+        //   v101Mais = grafo.getVerticePorNome(valorVertice + 101);
+
+        // v100Mais && grafo.addAresta(vAtual, v100Mais);
+        // v1Mais && grafo.addAresta(vAtual, v1Mais);
+        // v99Menos && grafo.addAresta(vAtual, v99Menos);
+        // v101Mais && grafo.addAresta(vAtual, v101Mais);
       }
 
       if (String(valorVertice).slice(-1) == 2) {
         const vAntFinalTres = grafo.getVerticePorNome(valorVertice - 99),
           vAntFinalDois = grafo.getVerticePorNome(valorVertice - 100),
           vAntFinalUm = grafo.getVerticePorNome(valorVertice - 101),
-          vProximoFinalTres = grafo.getVerticePorNome(valorVertice + 101),
+          vProximoFinalTres = grafo.getVerticePorNome(valorVertice + 1),
+          v1Menos = grafo.getVerticePorNome(valorVertice - 1),
           vProximoFinalDois = grafo.getVerticePorNome(valorVertice + 100),
-          vProximoFinalUm = grafo.getVerticePorNome(valorVertice + 99),
-          vAtual = grafo.getVerticePorNome(valorVertice);
+          vProximoFinalUm = grafo.getVerticePorNome(valorVertice + 99);
 
-        vAntFinalTres && grafo.addAresta(vAntFinalTres, vAtual);
-        vAntFinalDois && grafo.addAresta(vAntFinalDois, vAtual);
-        vAntFinalUm && grafo.addAresta(vAntFinalUm, vAtual);
-        vProximoFinalTres && grafo.addAresta(vProximoFinalTres, vAtual);
-        vProximoFinalDois && grafo.addAresta(vProximoFinalDois, vAtual);
-        vProximoFinalUm && grafo.addAresta(vProximoFinalUm, vAtual);
+        vAntFinalTres && grafo.addAresta(vAtual, vAntFinalTres);
+        vAntFinalDois && grafo.addAresta(vAtual, vAntFinalDois);
+        vAntFinalUm && grafo.addAresta(vAtual, vAntFinalUm);
+        vProximoFinalTres && grafo.addAresta(vAtual, vProximoFinalTres);
+        vProximoFinalDois && grafo.addAresta(vAtual, vProximoFinalDois);
+        vProximoFinalUm && grafo.addAresta(vAtual, vProximoFinalUm);
+        v1Menos && grafo.addAresta(vAtual, v1Menos);
+      }
+
+      if (String(valorVertice).slice(-1) == 3) {
+        const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
+          v99Mais = grafo.getVerticePorNome(valorVertice + 99),
+          v101Mais = grafo.getVerticePorNome(valorVertice + 101),
+          v1Menos = grafo.getVerticePorNome(valorVertice - 1),
+          v1Mais = grafo.getVerticePorNome(valorVertice + 1);
+
+        v100Mais && grafo.addAresta(vAtual, v100Mais);
+        v99Mais && grafo.addAresta(vAtual, v99Mais);
+        v101Mais && grafo.addAresta(vAtual, v101Mais);
+        v1Menos && grafo.addAresta(vAtual, v1Menos);
+        v1Mais && grafo.addAresta(vAtual, v1Mais);
+      }
+
+      if (String(valorVertice).slice(-1) == 4) {
+        const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
+          v1Menos = grafo.getVerticePorNome(valorVertice - 1),
+          v99Menos = grafo.getVerticePorNome(valorVertice - 99),
+          v99Mais = grafo.getVerticePorNome(valorVertice + 99),
+          v100Menos = grafo.getVerticePorNome(valorVertice - 100);
+
+        v100Mais && grafo.addAresta(vAtual, v100Mais);
+        v1Menos && grafo.addAresta(vAtual, v1Menos);
+        v100Menos && grafo.addAresta(vAtual, v100Menos);
+        v99Menos && grafo.addAresta(vAtual, v99Menos);
+        v99Mais && grafo.addAresta(vAtual, v99Mais);
       }
     });
 
     console.log(grafo.toString());
 
-    // nosNegativos.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
-    // console.log("--------------------------------------------------")
-    // nosComDuplicidade.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
-    // console.log("--------------------------------------------------")
-    // nosGrafos.map((item) => console.log(`Linha: ${item[0]} - Valor: ${item[1]}`));
+    fs.writeFile("C:\\temp\\novoarquivo.txt", grafo.toString(), function (erro) {
+      if (erro) {
+        throw erro;
+      }
+
+      return;
+    });
+
+    let duplicados = '\n Grafos com duplicidade: \n\n';
+
+    nosComDuplicidade.forEach((item) => duplicados += `Linha: ${item[0]} - Valor: ${item[1]}\n`);
+
+    fs.appendFile("C:\\temp\\novoarquivo.txt", duplicados, function (erro) {
+      if (erro) {
+        throw erro;
+      }
+
+      return;
+    });
+
+    let negativos = '\n Grafos negativos: \n\n';
+
+    nosNegativos.forEach((item) => negativos += `Linha: ${item[0]} - Valor: ${item[1]}\n`);
+
+    fs.appendFile("C:\\temp\\novoarquivo.txt", negativos, function (erro) {
+      if (erro) {
+        throw erro;
+      }
+
+      return;
+    });
   }
 });
-
-
-// aqui é o grafo
-
-
-// let g = new Grafo();
-// let c = g.addVertice("Criciúma");
-// let i = g.addVertice("Içara");
-// let a = g.addVertice("Ararangua");
-// let t = g.addVertice("Torres");
-
-// g.addAresta(c, i);
-// g.addAresta(c, t);
-// g.addAresta(i, a);
-// g.addAresta(a, t);
-
-// console.log(g.toString());
-
-
-
-
-
-
-function criarListaAdjacencia(lista) {
-  let grafo = new Grafo();
-
-  let numerosPositivos = lista.filter(numero => parseInt(numero) > 0 && !isNaN(numero));
-  let numerosUnicos = [...new Set(numerosPositivos)];
-
-  numerosUnicos.forEach((numero, index) => {
-    let verticeAtual = grafo.addVertice(numero);
-
-    if (index > 0 && numerosUnicos[index-1]) {
-      let verticeAnterior = grafo.getVerticePorNome(numerosUnicos[index-1]);
-      grafo.addAresta(verticeAtual, verticeAnterior);
-    }
-
-    if (index < numerosUnicos.length - 1 && numerosUnicos[index+1]) {
-      let verticeSeguinte = grafo.getVerticePorNome(numerosUnicos[index+1]);
-      grafo.addAresta(verticeAtual, verticeSeguinte);
-    }
-  });
-
-  return grafo;
-}
