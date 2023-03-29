@@ -1,3 +1,5 @@
+//Adair Locks, Vinicios Santos, Guilherme Fragnani, Marco Pizollo
+
 import * as path from "./diretorio.js";
 import * as fs from "fs";
 
@@ -106,34 +108,30 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
 
     nosGrafos.forEach(item => {
       const valorVertice = item[1],
-        vAtual = grafo.getVerticePorNome(valorVertice);
+        vAtual = grafo.getVerticePorNome(valorVertice),
+        ultimoNumero = String(valorVertice).slice(-1);
 
-      // if (valorVertice == 101) {
-      //   const vAnterior = grafo.getVerticePorNome(valorVertice - 99),
-      //     vProximo = grafo.getVerticePorNome(valorVertice + 1);
-
-      //   vAnterior && grafo.addAresta(vAtual, vAnterior);
-      //   vProximo && grafo.addAresta(vAtual, vProximo);
-      // }
-
-      if (String(valorVertice).slice(-1) == 1 /* && valorVertice !== 101 */) {
+      if (valorVertice == 101) {
         const vAnterior = grafo.getVerticePorNome(valorVertice - 99),
           vProximo = grafo.getVerticePorNome(valorVertice + 1);
 
         vAnterior && grafo.addAresta(vAtual, vAnterior);
         vProximo && grafo.addAresta(vAtual, vProximo);
-        // const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
-        //   v1Mais = grafo.getVerticePorNome(valorVertice + 1),
-        //   v99Menos = grafo.getVerticePorNome(valorVertice - 99),
-        //   v101Mais = grafo.getVerticePorNome(valorVertice + 101);
-
-        // v100Mais && grafo.addAresta(vAtual, v100Mais);
-        // v1Mais && grafo.addAresta(vAtual, v1Mais);
-        // v99Menos && grafo.addAresta(vAtual, v99Menos);
-        // v101Mais && grafo.addAresta(vAtual, v101Mais);
       }
 
-      if (String(valorVertice).slice(-1) == 2) {
+      if (ultimoNumero == 1 && valorVertice !== 101) {
+        const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
+          v1Mais = grafo.getVerticePorNome(valorVertice + 1),
+          v99Menos = grafo.getVerticePorNome(valorVertice - 99),
+          v101Mais = grafo.getVerticePorNome(valorVertice + 101);
+
+        v100Mais && grafo.addAresta(vAtual, v100Mais);
+        v1Mais && grafo.addAresta(vAtual, v1Mais);
+        v99Menos && grafo.addAresta(vAtual, v99Menos);
+        v101Mais && grafo.addAresta(vAtual, v101Mais);
+      }
+
+      if (ultimoNumero == 2) {
         const vAntFinalTres = grafo.getVerticePorNome(valorVertice - 99),
           vAntFinalDois = grafo.getVerticePorNome(valorVertice - 100),
           vAntFinalUm = grafo.getVerticePorNome(valorVertice - 101),
@@ -151,7 +149,7 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
         v1Menos && grafo.addAresta(vAtual, v1Menos);
       }
 
-      if (String(valorVertice).slice(-1) == 3) {
+      if (ultimoNumero == 3) {
         const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
           v99Mais = grafo.getVerticePorNome(valorVertice + 99),
           v101Mais = grafo.getVerticePorNome(valorVertice + 101),
@@ -165,7 +163,7 @@ fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
         v1Mais && grafo.addAresta(vAtual, v1Mais);
       }
 
-      if (String(valorVertice).slice(-1) == 4) {
+      if (ultimoNumero == 4) {
         const v100Mais = grafo.getVerticePorNome(valorVertice + 100),
           v1Menos = grafo.getVerticePorNome(valorVertice - 1),
           v99Menos = grafo.getVerticePorNome(valorVertice - 99),
