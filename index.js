@@ -66,7 +66,7 @@ class Aresta {
   }
 }
 
-fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
+fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
   if (err) {
     console.error(err);
   } else {
