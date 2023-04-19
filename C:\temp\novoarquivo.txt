@@ -1,0 +1,12 @@
+
+ Grafos negativos: 
+
+Linha: Linha10 - Valor: -101
+Linha: Linha21 - Valor: -404
+
+ Grafos com duplicidade: 
+
+Linha: Linha11 - Valor: 102
+Linha: Linha19 - Valor: 304
+Linha: Linha20 - Valor: 401
+Linha: Linha24 - Valor: 502
