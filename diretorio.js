@@ -1,2 +1,2 @@
 export const homeLinux = '/home/guilhermefrag';
-export const homeWindows = 'C:\\temp\\';
+export const homeWindows = 'C:\\Temp\\configs.txt';
