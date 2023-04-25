@@ -1,4 +1,4 @@
-//Adair Locks, Vinicios Santos, Guilherme Fragnani, Marco Pizollo
+//Adair Locks, Vinicios Santos, Guilherme Fragnani
 
 import * as path from "./diretorio.js";
 import * as fs from "fs";
