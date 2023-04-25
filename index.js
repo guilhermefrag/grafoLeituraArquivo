@@ -66,7 +66,7 @@ class Aresta {
   }
 }
 
-fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
+fs.readFile(`${path.homeWindows}/configs.txt`, "utf8", (err, data) => {
   if (err) {
     console.error(err);
   } else {
@@ -180,7 +180,7 @@ fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
 
     console.log(grafo.toString());
 
-    fs.writeFile("/home/guilhermefrag/texto.txt", grafo.toString(), function (erro) {
+    fs.writeFile("C:\\Temp\\texto.txt", grafo.toString(), function (erro) {
       if (erro) {
         throw erro;
       }
@@ -192,7 +192,7 @@ fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
 
     nosComDuplicidade.forEach((item) => duplicados += `Linha: ${item[0]} - Valor: ${item[1]}\n`);
 
-    fs.appendFile("/home/guilhermefrag/texto.txt", duplicados, function (erro) {
+    fs.appendFile("C:\\Temp\\texto.txt", duplicados, function (erro) {
       if (erro) {
         throw erro;
       }
@@ -204,7 +204,7 @@ fs.readFile(`${path.homeLinux}/configs.txt`, "utf8", (err, data) => {
 
     nosNegativos.forEach((item) => negativos += `Linha: ${item[0]} - Valor: ${item[1]}\n`);
 
-    fs.appendFile("/home/guilhermefrag/texto.txt", negativos, function (erro) {
+    fs.appendFile("C:\\Temp\\texto.txt", negativos, function (erro) {
       if (erro) {
         throw erro;
       }
